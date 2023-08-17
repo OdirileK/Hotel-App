@@ -1,0 +1,702 @@
+@import url("https://fonts.googleapis.com/css2?family=Belleza&display=swap");
+
+* {
+  font-family: "Belleza", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none !important;
+  transition: all 0.2s linear;
+  scroll-behavior: smooth;
+}
+
+section {
+  padding: 5rem 1rem;
+}
+
+.navbar-container {
+  .navbar {
+    /* Navbar background color */
+    position: fixed;
+
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+  }
+
+  .navbar-brand {
+    color: black;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  .navbar-nav {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar-nav li {
+    /* flex-direction: row; */
+    margin-right: 20px;
+  }
+
+  .navbar-nav a {
+    text-decoration: none;
+    color: black; /* List item text color */
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  .navbar-nav a:hover {
+    color: #203f5b; /* Hover color */
+  }
+
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  /* Open menu */
+  .open .navbar-nav {
+    display: block;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .navbar-nav {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 80px;
+      right: 20px;
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      width: 200px;
+      padding: 10px;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+  
+    .navbar.open .navbar-nav {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    .hamburger {
+      display: block;
+    }
+  }
+
+}
+
+ul {
+  justify-content: space-between;
+}
+
+li {
+  justify-content: space-between;
+}
+
+.home {
+  background: url(./assets/pexels-donald-tong-189296.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35%;
+  }
+  .link-btn {
+    background-color: #203f5b;
+    padding: 1%;
+    color: white;
+    border-radius: 10px;
+  }
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+}
+.about {
+  height: 70vh;
+  .about-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .left {
+    width: 40%;
+    height: 100%;
+  }
+
+  .right {
+    flex: 1 1 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .about-image {
+    width: 100%;
+    height: 10%;
+    margin-left: 10%;
+  }
+
+  .about-text {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-family: "Belleza", sans-serif;
+    font-size: 18px;
+    margin-left: 10%;
+    margin-right: 10%;
+
+    .about-title {
+      font-size: 50px;
+      margin-bottom: 8%;
+    }
+
+    .about-paragrapgh {
+      font-size: 12px;
+      margin-bottom: 42%;
+    }
+  }
+
+  /* CSS for responsiveness */
+  @media (max-width: 768px) {
+    .left,
+    .right {
+      flex: 1 1 100%;
+    }
+  }
+}
+
+.rooms {
+  .cards-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2%;
+    padding: 2%;
+  }
+
+  .card {
+    flex: 1 1 calc(25% - 1em); /* Adjust width for different screen sizes */
+    margin: 0.5em;
+    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+    border: none;
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .card img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .carousel-inner {
+    padding: 1em;
+  }
+
+  @media (max-width: 1024px) {
+    .card {
+      flex: 1 1 calc(33.33% - 1em); /* Adjust width for medium screens */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .card {
+      flex: 1 1 calc(50% - 1em); /* Adjust width for small screens */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .card {
+      flex: 1 1 calc(100% - 1em); /* Adjust width for extra small screens */
+    }
+  }
+}
+
+
+.book-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-y: hidden;
+
+  .book-img-container {
+    /* padding: 8%; */
+    width: 50%;
+
+    height: 100vh;
+
+    .book-img {
+      padding: 13%;
+      width: 100%;
+      height: 80%;
+    }
+
+    .book-details {
+      font-size: 12px;
+    }
+
+    .book-btn {
+      margin-left: 10%;
+    }
+  }
+
+  .utils-container {
+    width: 300px;
+    height: 300px;
+    margin-top: 10%;
+    margin-left: 5%;
+
+    .utils {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-left: 40%;
+
+      .utils-left {
+      }
+      .utils-right {
+        margin-left: 70%;
+      }
+    }
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+    padding-top: 20%;
+  }
+
+  .headerSearch {
+    height: 30px;
+    background: white;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 60%;
+  }
+
+  .headerSearchText {
+    color: lightgray;
+  }
+
+  .date {
+    position: absolute;
+    top: 560px;
+  }
+
+  .options {
+    position: absolute;
+    top: 560px;
+    background-color: #fff;
+    color: gray;
+    border-radius: 5px;
+  }
+
+  .optionItem {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .optionCounter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: black;
+  }
+
+  .optionCounterButton {
+    width: 30px;
+    height: 30px;
+    border: 1px solid;
+    cursor: pointer;
+  }
+}
+
+.amenities {
+  width: 90vw;
+  margin-left: 4%;
+  .flip-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 150px;
+    margin-top: 20px;
+    padding: 1%;
+  }
+
+  .flip-card {
+    width: 250px;
+    height: 280px;
+    perspective: 1000px;
+  }
+
+  .flip-card-img {
+    width: 250px;
+    height: 280px;
+  }
+
+  .flip-card-inner {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+  }
+
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+  }
+
+  .flip-card-front {
+    background-color: #203f5b;
+  }
+
+  .flip-card-back {
+    background-color: #203f5b;
+    opacity: 0.6;
+    color: white;
+    transform: rotateY(180deg);
+  }
+
+  .text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4%;
+  }
+}
+
+.contact {
+  display: flex;
+  justify-content: row;
+  flex-wrap: wrap;
+
+  padding: 0;
+
+  .contact-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding-right: 10%; */
+    background: #000;
+    width: 50%;
+    height: 80%;
+  }
+
+  .contact-image img {
+    max-width: 100%;
+  height: auto;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    margin-left: 10%;
+  }
+
+  .form label {
+    font-weight: bold;
+  }
+
+  .form input {
+    flex-direction: row;
+  }
+
+  .form textarea {
+    margin: 5px 0;
+    padding: 50px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .form button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+
+  @media (max-width: 768px) {
+    .contact-image, contact-image img,
+    .form {
+      flex: 1 1 100%;
+    }
+  }
+}
+
+
+
+
+.terms {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.terms::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.7; /* Adjust the opacity value as needed */
+  z-index: -1;
+}
+
+.terms::after {
+  content: "";
+  background-image: url("../src/assets/pexels-donald-tong-189296.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+.term-paragraph {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+  color: gray;
+}
+
+.gallery-container {
+  margin: 5;
+  padding: 5%;
+
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    padding: 5%;
+  }
+}
+
+/*Sign up*/
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  /* background-color: rgba(0, 0, 0, 0.4); */
+}
+
+.modal.open {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  margin-left: 35%;
+
+  .input {
+    border: gray solid 1px;
+    border-radius: 10px;
+    padding: 2%;
+  }
+}
+
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-left: 90%;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.footer {
+  background-color: #203f5b;
+
+  .footer-clean {
+    padding: 0px;
+    background-color: #203f5b;
+    color: white;
+  }
+
+  .footer-clean h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .footer-clean ul {
+    padding: 0;
+    list-style: none;
+    line-height: 1.6;
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  .footer-clean ul a {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.8;
+  }
+
+  .icons-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 5%; */
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+    gap: 10px;
+  }
+
+  @media (max-width: 767px) {
+    .footer-clean .item {
+      text-align: center;
+      padding-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer-clean .item.social {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .footer-clean .item.social > a {
+      margin-top: 40px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .footer-clean .item.social > a {
+      margin-top: 10px;
+    }
+  }
+
+  .footer-clean .copyright {
+    margin-top: 14px;
+    margin-bottom: 0;
+    font-size: 13px;
+    opacity: 0.6;
+  }
+}
+
+
+.account{
+  display: flex;
+  flex-direction: column;
+ flex-wrap: wrap;
+  .card-container{
+margin-top: 10%;
+/* background: #000; */
+width: 90%;
+
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+
+  }
+
+  .acc-container{
+    /* background: #000; */
+     margin-left: 30%; 
+    width: 100%;
+    height: 140%;
+  }
+}
+
+.booking{
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  .booking-container{
+    margin-top: 5%;
+  }
+
+  .booking-list{
+    display: flex;
+    flex-direction: row;
+    margin-left: 8%;
+  }
+
+  .booking-text{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    margin-left: 2%;
+ 
+  }
+}

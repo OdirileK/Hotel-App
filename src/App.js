@@ -14,6 +14,8 @@ import AdminUsers from './Admin/Users/AdminUsers';
 import UpdateRoom from './Admin/Rooms/UpdateRoom';
 import AddBooking from './Admin/Bookings/AddBooking';
 import UpdateBooking from './Admin/Bookings/UpdateBooking'
+import AddUser from './Admin/Users/AddUser';
+import UpdateUser from './Admin/Users/UpdateUser'
 
 function App() {
   return (
@@ -21,7 +23,7 @@ function App() {
    <BrowserRouter>
     <Routes>
       
-      <Route path='/' element={<AdminBooking/>}></Route>
+      <Route path='/' element={<AdminPanel/>}></Route>
       <Route path='/room/:id' element={<Book/>}></Route>
       <Route path='/gallery' element={<Gallery/>}></Route>
       <Route path='/terms' element={<Terms/>}></Route>
@@ -32,8 +34,12 @@ function App() {
       <Route path='/adminUpdate/:id' element={<UpdateRoom/>}></Route>
 
       <Route path='/addbooking' element={<AddBooking/>}></Route>
-      {/* <Route path='/adminBooking' element={<AdminBooking/>}></Route> */}
-      <Route path='/updateBooking' element={<UpdateBooking/>}></Route>
+      <Route path='/adminBooking' element={<AdminBooking/>}></Route>
+      <Route path='/updateBooking/:id' element={<UpdateBooking/>}></Route>
+
+      <Route path='/adminuser' element={<AdminUsers/>}></Route>
+      <Route path='/adduser' element={<AddUser/>}></Route>
+      <Route path='/updateuser/:id' element={<UpdateUser/>}></Route>
     </Routes>
    </BrowserRouter>
   );

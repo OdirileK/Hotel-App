@@ -26,7 +26,7 @@ const AdminPanel = () => {
         </div>
 
         <div id="page-content-wrapper" style={{}}>
-          <div className="container-fluid px-4" style={{ marginTop: "13%" }}>
+          <div className="container-fluid px-4" style={{ marginTop: '13%', marginLeft: "4%"}}>
             <div className="row my-5">
               <h3 className="fs-4 mb-3">Rooms</h3>
               <Link to={"/addRooms"}>

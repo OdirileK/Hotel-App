@@ -18,7 +18,10 @@ const AdminBooking = () => {
     }, [])
 
 
-
+    const handleDelete = async (id) => {
+        dispatch(deleteBooking(id))
+        dispatch(getBookingOptions())
+      }
 
     return (
         <div className="d-flex" id="wrapper">
@@ -29,7 +32,7 @@ const AdminBooking = () => {
             <div id="page-content-wrapper" style={{}}>
 
 
-                <div className="container-fluid px-4" style={{ marginTop: '13%' }}>
+                <div className="container-fluid px-4" style={{ marginTop: '13%', marginLeft: "4%" }}>
                     <button><Link to={'/addbooking'}>Make a booking</Link></button>
 
                     <div className="row my-5">
@@ -61,8 +64,8 @@ const AdminBooking = () => {
                                             <td>{booking.children}</td>
                                             <td>{booking.rooms}</td>
                                             <td>
-                                                <button>Update</button>
-                                                <button>delete</button>
+                                                <button><Link to={`/updateBooking/${booking._id}`}>Update</Link></button>
+                                                <button onClick={e => handleDelete(booking._id)}>delete</button>
                                             </td>
                                         </tr>
                                     ))}

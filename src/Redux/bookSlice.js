@@ -18,7 +18,7 @@ export const postBookingOptions = createAsyncThunk('booking/postBookingOptions',
 export const getBookingOptions = createAsyncThunk('booking/getBookingOptions',async () => {
     try {
       const response = await axios.get(`${API_URL}`);
-      console.log(response.data)
+      // console.log( 'from the slice',response.data)
       return response.data;
     
     } catch (error) {
@@ -28,8 +28,10 @@ export const getBookingOptions = createAsyncThunk('booking/getBookingOptions',as
 );
 
 export const updateBooking = createAsyncThunk('room/updateBooking',async (data) => {
+  console.log('trying to update')
   try {
     const response = await axios.put(`${API_URL}${data.id}`, data);
+    console.log(data.id)
     return response.data;
   } catch (error) {
     throw error;

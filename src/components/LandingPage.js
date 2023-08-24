@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import abtPic from "../assets/pexels-kindel-media-7294585.jpg";
-import pic from "../assets/pexels-kindel-media-7294584.jpg";
+import deluxe from "../assets/Deluxe.png";
 import Navbar from "./Navbar";
 import About from "../Pages/About";
 import Amenities from "../Pages/Amenities";
@@ -10,17 +10,34 @@ import {BsFacebook, BsTwitter, BsInstagram} from 'react-icons/bs'
 import contact from '../assets/pexels-thorsten-technoman-338504.jpg'
 
 const LandingPage = () => {
+
+const handleSubmit = () => {
+  alert('Thank you for contacting us. We will respond shortly')
+  window.location.reload()
+}
+
+const [fadeIn, setFadeIn] = useState(false);
+
+useEffect(() => {
+  setFadeIn(true);
+}, []);
+
   return (
     <div>
       {/*Navbar */}
 
-      <div class="navbar-container">
+      <div className="navbar-container">
         <Navbar />
       </div>
 
       {/*Header */}
       <section className="home" id="home">
-        <div class="btn-container">
+      <div className={`logo ${fadeIn ? 'fade-in' : ''}`}>
+      <img src={deluxe} alt='' width={450} height={450}/>
+      </div>
+     
+        <div className="btn-container">
+       
           <button className="link-btn"><a href="#rooms">Book Now</a></button>
         </div>
       </section>
@@ -46,36 +63,36 @@ const LandingPage = () => {
       
 
       
-          <div class="contact-image">
+          <div className="contact-image">
             <img src={contact} alt="Image" />
           </div>
 
-          <div class="form">
+          <div className="form">
           <h1>Contact Us</h1>
-            <form class="text-center border border-light p-5" action="#!">
+            <form className="text-center border border-light p-5" action="#!">
               <input
                 type="text"
                 id="defaultContactFormName"
-                class="form-control mb-4"
+                className="form-control mb-4"
                 placeholder="Name"
               />
 
               <input
                 type="email"
                 id="defaultContactFormEmail"
-                class="form-control mb-4"
+                className="form-control mb-4"
                 placeholder="E-mail"
               />
-              <div class="form-group">
+              <div className="form-group">
                 <textarea
-                  class="form-control rounded-0"
+                  className="form-control rounded-0"
                   id="exampleFormControlTextarea2"
                   rows="3"
                   placeholder="Message"
                 ></textarea>
               </div>
 
-              <button class="btn btn-info btn-block" type="submit">
+              <button className="btn btn-info btn-block" type="submit" onClick={handleSubmit}>
                 Send
               </button>
             </form>
@@ -86,11 +103,11 @@ const LandingPage = () => {
       {/*Footer */}
       <section className="footer">
 
-        <div class="footer-clean">
+        <div className="footer-clean">
           <footer>
-            <div class="container">
-              <div class="row justify-content-center">
-                <div class="col-sm-4 col-md-3 item">
+            <div className="container">
+              <div className="row justify-content-center">
+                <div className="col-sm-4 col-md-3 item">
                   <h3>Address</h3>
                   <p>
                     209 Aramis Ave
@@ -102,11 +119,11 @@ const LandingPage = () => {
                     6529
                   </p>
                 </div>
-                <div class="col-sm-4 col-md-3 item">
+                <div className="col-sm-4 col-md-3 item">
                   <h3>Contact</h3>
                   <p>(011) 834-7699</p>
                 </div>
-                <div class="col-sm-4 col-md-3 item">
+                <div className="col-sm-4 col-md-3 item">
                   <h3>Email</h3>
                   <p>deluxeblu@info.com</p>
                 </div>
@@ -125,7 +142,7 @@ const LandingPage = () => {
                 </a>
                
               </div>
-              <p class="copyright">De luxe blu © 2018</p>
+              <p className="copyright">De luxe blu © 2018</p>
               </div>
              
             </div>

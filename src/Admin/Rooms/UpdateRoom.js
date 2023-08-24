@@ -1,14 +1,11 @@
-
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { updateRoom, fetchRooms } from '../../Redux/roomSlice'
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 
 
 const AddRooms = () => {
     const dispatch = useDispatch()
-    const nav = useNavigate()
     const { id } = useParams();
     const { rooms } = useSelector((state) => state.rooms);
 
@@ -106,7 +103,7 @@ const AddRooms = () => {
                     />
                 </div>
 
-                <button onClick={handleSubmit}><Link to={'/'}>Submit</Link></button>
+                <button           style={{marginLeft: '40%', padding: '2%', borderRadius: '10px', backgroundColor: 'blue', marginTop: '5%'}}  onClick={handleSubmit}><Link to={'/'}>Submit</Link></button>
             </form>
         </div>
     );

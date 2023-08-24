@@ -13,12 +13,12 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { format } from "date-fns";
+import { format, differenceInDays } from "date-fns";
 import Navbar from "../components/Navbar";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { fetchRooms } from "../Redux/roomSlice";
-import { postBookingOptions } from '../Redux/bookSlice';
+import { postBookingOptions } from "../Redux/bookSlice";
 
 const Book = () => {
   const [date, setDate] = useState([
@@ -38,15 +38,18 @@ const Book = () => {
   });
   const dispatch = useDispatch();
   const { id } = useParams();
+  const navigate = useNavigate();
   const { rooms, loading, error } = useSelector((state) => state.rooms);
   // Find the specific room with the provided ID
   const room = rooms.find((room) => room._id === id);
 
+  const isAuthenticated = useSelector((state) => state.auth.accessToken !== null);
+
   const [bookingOptions, setBookingOptions] = useState({
     startDate: "",
-    endDate:"",
+    endDate: "",
     adults: "",
-    children:"",
+    children: "",
     rooms: "",
   });
 
@@ -54,12 +57,13 @@ const Book = () => {
     dispatch(fetchRooms()); // Fetch all rooms if needed
   }, [dispatch]);
 
-
-
   const handleBookClick = () => {
     const selectedStartDate = date[0].startDate;
     const selectedEndDate = date[0].endDate;
-  
+
+    const numberOfDays = differenceInDays(selectedEndDate, selectedStartDate);
+    const totalPrice = numberOfDays * room.price; 
+
     const updatedBookingOptions = {
       startDate: selectedStartDate,
       endDate: selectedEndDate,
@@ -67,13 +71,20 @@ const Book = () => {
       children: options.children,
       rooms: options.rooms,
     };
-  
-    setBookingOptions(updatedBookingOptions); // Update local state
-    dispatch(postBookingOptions(updatedBookingOptions)); // Dispatch the action
-  };
-    
-  
 
+    setBookingOptions(updatedBookingOptions);
+    dispatch(postBookingOptions(updatedBookingOptions));
+
+    console.log(totalPrice);
+    console.log("book clicked");
+
+    if (isAuthenticated) {
+      navigate("/payment", { state: { totalPrice } }); // Navigate to payment page
+    } else {
+      alert('Please login or Sign Up to continue')
+    }
+  
+  };
 
   const handleOption = (name, operation) => {
     setOptions((prev) => {
@@ -107,21 +118,24 @@ const Book = () => {
           <div className="book-img">
             <Carousel>
               <div>
-                <img src={venice1} alt="Image 1" />
+                <img src={room.image} alt="Image 1" />
               </div>
               <div>
-                <img src={venice2} alt="Image 2" />
+                <img src={room.image2} alt="Image 2" />
               </div>
               <div>
-                <img src={venice3} alt="Image 3" />
+                <img src={room.image3} alt="Image 3" />
               </div>
               <div>
-                <img src={venice4} alt="Image 4" />
+                <img src={room.image4} alt="Image 4" />
               </div>
             </Carousel>
             <div className="book-text">
               <h1>{room.title}</h1>
-              <h4>R {room.price} / night <BsPersonFill/>{room.maxPeople}</h4>
+              <h4>
+                R {room.price} / night <BsPersonFill />
+                {room.maxPeople}
+              </h4>
               <p className="book-details">{room.desc}</p>
             </div>
           </div>
@@ -130,29 +144,13 @@ const Book = () => {
         <div className="utils-container">
           <div className="utils">
             <div className="utils-left">
-              <h6>Kitchen </h6>
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
+              <h6>{room.util} </h6>
+              <h6>{room.util3} </h6>
+              <h6>{room.util5} </h6>
             </div>
             <div className="utils-right">
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
-              <h6>Kitchen</h6>
+              <h6>{room.util2}</h6>
+              <h6>{room.util4} </h6>
             </div>
           </div>
 
@@ -259,10 +257,10 @@ const Book = () => {
                 </div>
               )}
             </div>
-
-            <button className="book-btn" onClick={handleBookClick}>Book</button>
           </div>
-          
+          <button className="book-btn" onClick={handleBookClick}>
+            Book
+          </button>
         </div>
       </div>
     </>
